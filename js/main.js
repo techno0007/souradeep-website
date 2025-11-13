@@ -460,16 +460,7 @@
     }
 
     init() {
-      const contactMeBtn = document.getElementById('contactMeBtn');
-      if (contactMeBtn) {
-        contactMeBtn.addEventListener('click', () => {
-          const contactSection = document.getElementById('contact');
-          if (contactSection) {
-            const nav = new Navigation();
-            nav.scrollToSection('contact');
-          }
-        });
-      }
+      // Contact Me button is now a direct call link, no handler needed
     }
   }
 

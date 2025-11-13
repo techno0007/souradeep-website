@@ -830,6 +830,8 @@ a {
   border-radius: 4px;
   transition: var(--transition);
   cursor: pointer;
+  text-decoration: none;
+  border: none;
 }
 
 .btn-primary {
