@@ -17,6 +17,7 @@
       this.navLinks = document.querySelectorAll('.nav-link, .nav-mobile-link, .footer-link');
       this.isScrolled = false;
       this.topBar = document.querySelector('.top-bar');
+      this.currentScrollAnimation = null;
       
       this.init();
     }
@@ -133,29 +134,56 @@
       const section = document.getElementById(sectionId);
       if (!section) return;
 
-      const startY = window.pageYOffset;
-      const targetY = section.getBoundingClientRect().top + window.pageYOffset;
-      const distance = targetY - startY;
-      const duration = 800;
-      let start = null;
+      // Get the top bar and nav heights for accurate positioning
+      const topBar = document.querySelector('.top-bar');
+      const nav = document.getElementById('navigation');
+      const topBarHeight = topBar ? topBar.offsetHeight : 0;
+      const navHeight = nav ? nav.offsetHeight : 0;
+      const offset = topBarHeight + navHeight + 20; // Extra 20px padding
 
+      const startY = window.pageYOffset || window.scrollY || document.documentElement.scrollTop;
+      const sectionTop = section.getBoundingClientRect().top + startY;
+      const targetY = sectionTop - offset;
+      const distance = targetY - startY;
+      const duration = Math.min(Math.abs(distance) * 0.8, 1200); // Adaptive duration
+      let start = null;
+      let rafId = null;
+
+      // Improved easing function for smoother scroll
       const easeInOutCubic = (t) => {
-        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        return t < 0.5 
+          ? 4 * t * t * t 
+          : 1 - Math.pow(-2 * t + 2, 3) / 2;
       };
+
+      // Cancel any existing scroll animation
+      if (this.currentScrollAnimation) {
+        cancelAnimationFrame(this.currentScrollAnimation);
+      }
 
       const animate = (currentTime) => {
         if (start === null) start = currentTime;
         const timeElapsed = currentTime - start;
         const progress = Math.min(timeElapsed / duration, 1);
         
-        window.scrollTo(0, startY + distance * easeInOutCubic(progress));
+        const ease = easeInOutCubic(progress);
+        const currentY = startY + distance * ease;
+        
+        window.scrollTo({
+          top: currentY,
+          behavior: 'auto' // Use manual scroll for smoother animation
+        });
         
         if (progress < 1) {
-          requestAnimationFrame(animate);
+          rafId = requestAnimationFrame(animate);
+          this.currentScrollAnimation = rafId;
+        } else {
+          this.currentScrollAnimation = null;
         }
       };
 
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
+      this.currentScrollAnimation = rafId;
     }
   }
 
