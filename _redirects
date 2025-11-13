@@ -1,0 +1,5 @@
+# Netlify Redirects File
+# This file handles URL redirects and rewrites
+
+# SPA fallback - redirect all routes to index.html
+/*    /index.html   200
