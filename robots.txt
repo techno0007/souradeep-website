@@ -1,5 +1,5 @@
-# robots.txt for Make Your Wedding Canvas
-# https://makeyourweddingcanvas.in/robots.txt
+# robots.txt for Moment Diaries
+# https://momentdiaries.in/robots.txt
 
 User-agent: *
 Allow: /
@@ -9,7 +9,7 @@ Allow: /
 # Disallow: /private/
 
 # Sitemap location
-Sitemap: https://makeyourweddingcanvas.in/sitemap.xml
+Sitemap: https://momentdiaries.in/sitemap.xml
 
 # Crawl-delay (optional, helps prevent server overload)
 Crawl-delay: 1

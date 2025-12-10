@@ -1,5 +1,5 @@
 /**
- * Main JavaScript for Make Your Wedding Canvas
+ * Main JavaScript for Moment Diaries
  * Advanced vanilla JS implementation
  */
 
@@ -370,7 +370,7 @@
     sendToWhatsApp(data) {
       const message = `Hello! I'm interested in your photography services.\n\nName: ${data.name}\nPhone: ${data.phone}${data.email ? `\nEmail: ${data.email}` : ''}\n\nMessage: ${data.message}`;
       const encodedMessage = encodeURIComponent(message);
-      const whatsappUrl = `https://wa.me/917044720354?text=${encodedMessage}`;
+      const whatsappUrl = `https://wa.me/917044031404?text=${encodedMessage}`;
       window.open(whatsappUrl, '_blank');
     }
 
@@ -716,7 +716,7 @@
     new Lightbox();
     
     // Log initialization
-    console.log('Make Your Wedding Canvas - Initialized');
+    console.log('Moment Diaries - Initialized');
   }
 
   // Start the application

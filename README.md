@@ -1,4 +1,4 @@
-# Make Your Wedding Canvas - Wedding Photography Portfolio
+# Moment Diaries - Wedding Photography Portfolio
 
 A beautiful, modern wedding photography portfolio website built with vanilla HTML, CSS, and JavaScript. Fully optimized for Netlify deployment.
 
